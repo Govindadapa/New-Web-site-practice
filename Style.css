@@ -112,4 +112,25 @@ button:hover {
 
 .social-icons-para {
   margin-bottom: 10px;
+  color: #fff;
+}
+
+.market-report {
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  background-color: black;
+}
+
+.social-icons-para1 {
+  margin-bottom: 10px;
+  color: black;
+}
+
+.Report-Home-view {
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  padding: 20px;
+  background-color: rgba(69, 233, 138, 0.364);
 }
