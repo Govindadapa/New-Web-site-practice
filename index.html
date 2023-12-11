@@ -31,52 +31,46 @@
       </div>
     </div>
     <div>
-    <h1>Market Status</h1>
-<div id="market-status"></div>
+   <h1>Stock Quote</h1>
+<div id="stock-quote"></div>
 
 <script>
-    const API_LINK = "https://www.alphavantage.co/query?function=MARKET_STATUS&apikey=XEL8LZKDVEIIDHXK";
+    const API_KEY = "pk_60239b338623409cb1bd322fbfdf5c9c";
+    const SYMBOL = "^BSESN";  // Replace with the stock symbol you want to track
 
-    function getMarketStatus() {
-    $.ajax({
-        url: API_LINK,
-        method: "GET",
-        dataType: "json",
-        success: function (data) {
-            console.log("Success! Data received:", data);
+    function getStockQuote() {
+        const API_URL = `https://cloud.iexapis.com/stable/stock/${SYMBOL}/quote?token=${API_KEY}`;
 
-            // Check if the 'MarketStatus' key exists in the response
-            if ("MarketStatus" in data) {
-                const marketStatusData = data["MarketStatus"];
-                console.log("Market Status Data:", marketStatusData);
-
-                const marketState = marketStatusData["MarketState"];
-                const marketStatus = marketStatusData["MarketStatus"];
-
-                console.log("Market State:", marketState);
-                console.log("Market Status:", marketStatus);
-
-                $("#market-status").html(`
-                    <p>Market State: ${marketState}</p>
-                    <p>Market Status: ${marketStatus}</p>
-                `);
-            } else {
-                console.error("Response does not contain 'MarketStatus'.", data);
+        $.ajax({
+            url: API_URL,
+            method: "GET",
+            dataType: "json",
+            success: function (data) {
+                displayStockQuote(data);
+            },
+            error: function (xhr, status, error) {
+                console.error("Error fetching stock quote:", error);
             }
-        },
-        error: function (xhr, status, error) {
-            console.error("Error fetching market status:", error);
-            console.log(xhr.responseText);  // Log the full response text
-        }
-    });
-}
+        });
+    }
+
+    function displayStockQuote(quoteData) {
+        const stockQuoteHTML = `
+            <p>Symbol: ${quoteData.symbol}</p>
+            <p>Latest Price: $${quoteData.latestPrice.toFixed(2)}</p>
+            <p>Change: $${quoteData.change.toFixed(2)}</p>
+            <p>Change Percent: ${quoteData.changePercent.toFixed(2)}%</p>
+        `;
+
+        $("#stock-quote").html(stockQuoteHTML);
+    }
 
     // Update every 60 seconds
-    setInterval(getMarketStatus, 60000);
+    setInterval(getStockQuote, 60000);
 
     // Initial load
-    getMarketStatus();
+    getStockQuote();
 </script>
-      </div>
+     </div>
   </body>
 </html>
