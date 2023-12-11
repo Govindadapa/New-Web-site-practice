@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="Style.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <title>Market Study</title>
   </head>
   <body>
@@ -29,5 +30,42 @@
         </div>
       </div>
     </div>
+    <div><h1>Market Status</h1>
+    <div id="market-status"></div>
+
+    <script>
+      const API_LINK =
+        "https://www.alphavantage.co/query?function=MARKET_STATUS&apikey=XEL8LZKDVEIIDHXK";
+
+      function getMarketStatus() {
+        // Using JSONP to handle potential CORS issues
+        $.ajax({
+          url: API_LINK,
+          dataType: "jsonp",
+          success: function (data) {
+            const marketStatusData = data["MarketStatus"];
+
+            if (marketStatusData) {
+              const marketState = marketStatusData["MarketState"];
+              const marketStatus = marketStatusData["MarketStatus"];
+
+              $("#market-status").html(`
+                        <p>Market State: ${marketState}</p>
+                        <p>Market Status: ${marketStatus}</p>
+                    `);
+            }
+          },
+          error: function () {
+            console.error("Error fetching market status.");
+          },
+        });
+      }
+
+      // Update every 60 seconds
+      setInterval(getMarketStatus, 60000);
+
+      // Initial load
+      getMarketStatus();
+    </script></div>
   </body>
 </html>
