@@ -56,7 +56,9 @@
             }
           },
           error: function () {
-            console.error("Error fetching market status.");
+            error: function (xhr, status, error) {
+    console.error("Error fetching market status:", error);
+    console.log(xhr.responseText);  // Log the full response text
           },
         });
       }
