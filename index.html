@@ -30,47 +30,5 @@
         </div>
       </div>
     </div>
-    <div>
-   <h1>Stock Quote</h1>
-<div id="stock-quote"></div>
-
-<script>
-    const API_KEY = "XEL8LZKDVEIIDHXK";
-    const SYMBOL = "^BSESN";  // Replace with the stock symbol you want to track
-
-    function getStockQuote() {
-        const API_URL = `https://cloud.iexapis.com/stable/stock/${SYMBOL}/quote?token=${API_KEY}`;
-
-        $.ajax({
-            url: API_URL,
-            method: "GET",
-            dataType: "json",
-            success: function (data) {
-                displayStockQuote(data);
-            },
-            error: function (xhr, status, error) {
-                console.error("Error fetching stock quote:", error);
-            }
-        });
-    }
-
-    function displayStockQuote(quoteData) {
-        const stockQuoteHTML = `
-            <p>Symbol: ${quoteData.symbol}</p>
-            <p>Latest Price: $${quoteData.latestPrice.toFixed(2)}</p>
-            <p>Change: $${quoteData.change.toFixed(2)}</p>
-            <p>Change Percent: ${quoteData.changePercent.toFixed(2)}%</p>
-        `;
-
-        $("#stock-quote").html(stockQuoteHTML);
-    }
-
-    // Update every 60 seconds
-    setInterval(getStockQuote, 60000);
-
-    // Initial load
-    getStockQuote();
-</script>
-     </div>
-  </body>
+      </body>
 </html>
