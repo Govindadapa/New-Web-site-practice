@@ -30,44 +30,42 @@
         </div>
       </div>
     </div>
-    <div><h1>Market Status</h1>
-    <div id="market-status"></div>
+    <h1>Market Status</h1>
+<div id="market-status"></div>
 
-    <script>
-      const API_LINK =
-        "https://www.alphavantage.co/query?function=MARKET_STATUS&apikey=XEL8LZKDVEIIDHXK";
+<script>
+    const API_LINK = "https://www.alphavantage.co/query?function=MARKET_STATUS&apikey=XEL8LZKDVEIIDHXK";
 
-      function getMarketStatus() {
-        // Using JSONP to handle potential CORS issues
+    function getMarketStatus() {
         $.ajax({
-          url: API_LINK,
-          dataType: "jsonp",
-          success: function (data) {
-            const marketStatusData = data["MarketStatus"];
+            url: API_LINK,
+            method: "GET",
+            dataType: "json",
+            success: function (data) {
+                const marketStatusData = data["MarketStatus"];
 
-            if (marketStatusData) {
-              const marketState = marketStatusData["MarketState"];
-              const marketStatus = marketStatusData["MarketStatus"];
+                if (marketStatusData) {
+                    const marketState = marketStatusData["MarketState"];
+                    const marketStatus = marketStatusData["MarketStatus"];
 
-              $("#market-status").html(`
+                    $("#market-status").html(`
                         <p>Market State: ${marketState}</p>
                         <p>Market Status: ${marketStatus}</p>
                     `);
-            }
-          },
-          error: function () {
+                }
+            },
             error: function (xhr, status, error) {
-    console.error("Error fetching market status:", error);
-    console.log(xhr.responseText);  // Log the full response text
-          },
+                console.error("Error fetching market status:", error);
+                console.log(xhr.responseText);  // Log the full response text
+            }
         });
-      }
+    }
 
-      // Update every 60 seconds
-      setInterval(getMarketStatus, 60000);
+    // Update every 60 seconds
+    setInterval(getMarketStatus, 60000);
 
-      // Initial load
-      getMarketStatus();
-    </script></div>
+    // Initial load
+    getMarketStatus();
+</script>
   </body>
 </html>
