@@ -59,6 +59,7 @@
   text-align: center;
   color: #fff;
   padding: 20px;
+  background-color: rgba(148, 141, 141, 0.364);
 }
 
 .social-icons {
@@ -102,4 +103,13 @@ button:hover span {
 
 button:hover {
   border: none;
+}
+.social-icons {
+  width: 100%;
+  text-align: center;
+  color: #fff;
+}
+
+.social-icons-para {
+  margin-bottom: 10px;
 }
