@@ -1,7 +1,8 @@
 * {
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
   font-family: "sans-serif";
+  box-sizing: border-box;
 }
 
 .banner {
@@ -15,81 +16,76 @@
 .navbar {
   width: 85%;
   margin: auto;
-  padding: 35px 0;
+  padding: 20px 0;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center; /* Centered the navigation bar */
 }
 
-.logo {
-  width: 120px;
-  cursor: pointer;
+.navbar ul {
+  list-style: none;
+  display: flex;
 }
 
 .navbar ul li {
-  list-style: none;
-  display: inline-block;
-  margin: 0 20px;
-  position: relative;
+  margin: 0 10px;
 }
+
 .navbar ul li a {
   text-decoration: none;
   color: white;
   text-transform: uppercase;
 }
 
-.navbar ul li::after {
-  content: "";
-  height: 3px;
-  width: 0%;
-  background: #009688;
-  position: absolute;
-  left: 0;
-  bottom: -10px;
-  transition: 0.5s;
-}
+/* Added a media query for smaller screens (max-width: 600px) */
+@media only screen and (max-width: 600px) {
+  .navbar {
+    flex-direction: column; /* Display items in a column on smaller screens */
+    align-items: center;
+  }
 
-.navbar ul li:hover::after {
-  width: 100%;
+  .navbar ul {
+    flex-direction: column; /* Display list items in a column on smaller screens */
+    text-align: center; /* Center text for list items on smaller screens */
+  }
+
+  .navbar ul li {
+    margin: 10px 0; /* Add space between list items on smaller screens */
+  }
 }
 
 .content {
   width: 100%;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
   text-align: center;
   color: #fff;
+  padding: 20px;
+}
+
+.social-icons {
+  margin-top: 20px;
+}
+
+.social-icons a {
+  margin: 0 10px;
 }
 
 .content h1 {
-  font-size: 70px;
-  margin-top: 80px;
+  font-size: 40px; /* Adjusted for smaller screens */
+  margin-top: 20px; /* Adjusted for smaller screens */
 }
 
 .content p {
-  margin: 20px auto;
+  margin: 10px auto; /* Adjusted for smaller screens */
   font-weight: 100;
-  line-height: 25px;
+  line-height: 20px; /* Adjusted for smaller screens */
 }
 
 button {
-  width: 200px;
-  padding: 15px 0;
-  text-align: center;
-  margin: 20px 10px;
-  border-radius: 25px;
-  font-weight: bold;
-  border: 2px solid #009688;
-  background: transparent;
-  color: white;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
+  width: 150px; /* Adjusted for smaller screens */
+  padding: 10px 0; /* Adjusted for smaller screens */
 }
 
 span {
-  background: #009688;
   height: 100%;
   width: 0%;
   border-radius: 25px;
