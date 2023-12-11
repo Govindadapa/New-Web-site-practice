@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -38,38 +38,38 @@
     const API_LINK = "https://www.alphavantage.co/query?function=MARKET_STATUS&apikey=XEL8LZKDVEIIDHXK";
 
     function getMarketStatus() {
-        $.ajax({
-            url: API_LINK,
-            method: "GET",
-            dataType: "json",
-            success: function (data) {
-                console.log("Success! Data received:", data);
+    $.ajax({
+        url: API_LINK,
+        method: "GET",
+        dataType: "json",
+        success: function (data) {
+            console.log("Success! Data received:", data);
 
+            // Check if the 'MarketStatus' key exists in the response
+            if ("MarketStatus" in data) {
                 const marketStatusData = data["MarketStatus"];
+                console.log("Market Status Data:", marketStatusData);
 
-                if (marketStatusData) {
-                    console.log("Market Status Data:", marketStatusData);
+                const marketState = marketStatusData["MarketState"];
+                const marketStatus = marketStatusData["MarketStatus"];
 
-                    const marketState = marketStatusData["MarketState"];
-                    const marketStatus = marketStatusData["MarketStatus"];
+                console.log("Market State:", marketState);
+                console.log("Market Status:", marketStatus);
 
-                    console.log("Market State:", marketState);
-                    console.log("Market Status:", marketStatus);
-
-                    $("#market-status").html(`
-                        <p>Market State: ${marketState}</p>
-                        <p>Market Status: ${marketStatus}</p>
-                    `);
-                } else {
-                    console.error("No 'MarketStatus' data found in the response.");
-                }
-            },
-            error: function (xhr, status, error) {
-                console.error("Error fetching market status:", error);
-                console.log(xhr.responseText);  // Log the full response text
+                $("#market-status").html(`
+                    <p>Market State: ${marketState}</p>
+                    <p>Market Status: ${marketStatus}</p>
+                `);
+            } else {
+                console.error("Response does not contain 'MarketStatus'.", data);
             }
-        });
-    }
+        },
+        error: function (xhr, status, error) {
+            console.error("Error fetching market status:", error);
+            console.log(xhr.responseText);  // Log the full response text
+        }
+    });
+}
 
     // Update every 60 seconds
     setInterval(getMarketStatus, 60000);
