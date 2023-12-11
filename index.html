@@ -30,6 +30,7 @@
         </div>
       </div>
     </div>
+    <div>
     <h1>Market Status</h1>
 <div id="market-status"></div>
 
@@ -42,16 +43,25 @@
             method: "GET",
             dataType: "json",
             success: function (data) {
+                console.log("Success! Data received:", data);
+
                 const marketStatusData = data["MarketStatus"];
 
                 if (marketStatusData) {
+                    console.log("Market Status Data:", marketStatusData);
+
                     const marketState = marketStatusData["MarketState"];
                     const marketStatus = marketStatusData["MarketStatus"];
+
+                    console.log("Market State:", marketState);
+                    console.log("Market Status:", marketStatus);
 
                     $("#market-status").html(`
                         <p>Market State: ${marketState}</p>
                         <p>Market Status: ${marketStatus}</p>
                     `);
+                } else {
+                    console.error("No 'MarketStatus' data found in the response.");
                 }
             },
             error: function (xhr, status, error) {
@@ -67,5 +77,6 @@
     // Initial load
     getMarketStatus();
 </script>
+      </div>
   </body>
 </html>
