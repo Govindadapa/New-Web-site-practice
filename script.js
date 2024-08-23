@@ -26,4 +26,12 @@ function search() {
     const regex = new RegExp(`(${query})`, 'gi');
     return text.replace(regex, '<span class="highlight">$1</span>');
   }
+
+  document.querySelectorAll('td').forEach(td => {
+    const link = document.createElement('a');
+    link.href = 'https://marketstudy.online/';
+    link.innerHTML = td.innerHTML;
+    td.innerHTML = '';
+    td.appendChild(link);
+  });
   
