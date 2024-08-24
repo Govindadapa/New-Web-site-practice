@@ -1,37 +1,110 @@
-function search() {
-    // Get the input value and convert to lower case for case-insensitive search
-    const query = document.getElementById('search-input').value.toLowerCase();
+.search-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    
+}
+
+.search-container h1 {
+    margin: 0 0 20px;
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    border: 2px solid #ddd;
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+.search-bar input[type="text"] {
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    flex: 1;
+    outline: none;
+}
+
+.search-bar button {
+    background-color: #5A67D8;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border-radius: 0 50px 50px 0;
+}
+
+.search-bar button:hover {
+    background-color: #434190;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "sans-serif";
+    box-sizing: border-box;
+  }
   
-    // Get all elements to search within; you may need to adjust the selector based on your HTML structure
-    const items = document.querySelectorAll('.searchable');
+  .banner {
+    height: 100vh;
+    width: 100%;
+    background-color: black;
+    background-size: cover;
+    background-position: center;
+  }
   
-    // Iterate through each item
-    items.forEach(item => {
-      // Get the text content of the item and convert to lower case
-      const text = item.textContent.toLowerCase();
-  
-      // Toggle the visibility based on whether the query matches the item's text
-      if (text.includes(query) || query === '') {
-        item.style.display = ''; // Show item if query matches
-      } else {
-        item.style.display = 'none'; // Hide item if query does not match
-      }
-    });
+  .navbar {
+    width: 85%;
+    margin: auto;
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Centered the navigation bar */
   }
 
-  function highlightText(text, query) {
-    if (!query) return text; // Return original text if no query
-  
-    // Create a regular expression to find the query in the text
-    const regex = new RegExp(`(${query})`, 'gi');
-    return text.replace(regex, '<span class="highlight">$1</span>');
+ 
+table {
+  width: 100%; /* Adjust width as needed */
+  border-collapse: collapse;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+th, td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tr:hover {
+  background-color: #e0e0e0;
+}
+
+.highlight {
+    background-color: yellow;
   }
 
-  document.querySelectorAll('td').forEach(td => {
-    const link = document.createElement('a');
-    link.href = 'https://marketstudy.online/';
-    link.innerHTML = td.innerHTML;
-    td.innerHTML = '';
-    td.appendChild(link);
-  });
-  
+  .carousel-item h3 {
+    font-size: 2rem;
+    color: #333;
+}
+
+.carousel-item p {
+    font-size: 1.5rem;
+    color: #666;
+}
